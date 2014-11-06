@@ -1,7 +1,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
 
 void xor(char *str1, char *str2, char *result)
 {
