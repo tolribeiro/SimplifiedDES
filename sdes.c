@@ -25,7 +25,7 @@ int main()
 
 	xor(str1, str2, result);
 
-	printf("%s", result);
+	printf("%s\n", result);
 
 	return 0;
 }
