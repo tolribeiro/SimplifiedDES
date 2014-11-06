@@ -11,7 +11,7 @@
 
 #define S_STRING 10
 
-char result[S_STRING+1]; /* terminating character */
+char result[S_STRING+1]; // terminating character 
 char str1[S_STRING]; 
 char str2[S_STRING];
 
