@@ -5,6 +5,9 @@
 */
 
 #include <stdio.h>
+char result[S_STRING+1]; //terminating character
+char str1[S_STRING]; 
+char str2[S_STRING];
 
 int main(int argc, char const *argv[])
 {
