@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// initial permutation 
 void ip(char *result, char *str)
 {
 	result[0] = str[1];
@@ -14,6 +15,8 @@ void ip(char *result, char *str)
 	result[7] = str[6];
 	result[8] = '\0';
 }
+
+// xor implementation between two strings, same length
 void xor(char *str1, char *str2, char *result)
 {
 	unsigned long int i;
@@ -29,4 +32,5 @@ void xor(char *str1, char *str2, char *result)
 		}
 		else result[i] = '1';
 	}
+	result[i] = '\0';
 }
