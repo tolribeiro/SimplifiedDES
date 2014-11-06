@@ -9,11 +9,11 @@
 #include <string.h>
 #include "headers.h"
 
-#define S_STRING 10
+#define SIZE 10
 
-char result[S_STRING+1]; // terminating character 
-char str1[S_STRING]; 
-char str2[S_STRING];
+char result[SIZE]; 
+char str1[SIZE]; 
+char str2[SIZE];
 
 int main()
 {
@@ -23,7 +23,6 @@ int main()
 	scanf("%s", str2);
 	printf("%s\n", str2);
 
-	printf("\n");
 	xor(str1, str2, result);
 
 	printf("%s", result);

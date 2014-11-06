@@ -7,7 +7,7 @@ void xor(char *str1, char *str2, char *result)
 	unsigned long int i;
 
 	if (strlen(str1) != strlen(str2)) {
-		printf("Error: xor operation does not support different string lengths.");
+		printf("Error: xor operation does not support different string lengths.\n");
 		exit(0);
 	}
 
@@ -17,5 +17,4 @@ void xor(char *str1, char *str2, char *result)
 		}
 		else result[i] = '1';
 	}
-	result[i] = '\0';
 }
