@@ -15,6 +15,9 @@ void ip(char *result);
 void ip_inverse(char *str);
 void divide_block(char *left, char *right);
 void p10_key_permutation(char *key);
+void circular_left_shift(char *key);
+void p8_key_permutation(char *key);
+void key_generation(char *key);
 
 char result[11]; // used for permutations: max is 10 (key) plus terminator character
 char plaintext[9]; // compatible for strcpy
@@ -23,30 +26,56 @@ char right[5];
 char key[11]; // 10-bit size key plus terminator
 char key1[9]; // 8-bit subkey1 plus terminator character	
 char key2[9]; // 8-bit subkey2 plus terminator character
+char temp[11]; // temporary variable to generate subkey k2
 
 int main()
 {
 	int i;
 
-	do {
-		scanf("%s", plaintext);
-	} while (strlen(plaintext) != SIZE_BLOCK);
+	//do {
+	//	scanf("%s", plaintext);
+	//} while (strlen(plaintext) != SIZE_BLOCK);
 
-	ip(plaintext);
-	printf("%s\n", result);
+	//ip(plaintext);
+	//printf("%s\n", result);
 	//strcpy(plaintext, result);
  	//divide_block(left, right);
  	
  	// key permutation test
- 	/*
- 	strcpy(key, "1010000010");
+ 	
+ 	/*strcpy(key, "1010000010");
  	p10_key_permutation(key);
-	printf("%s\n", result);*/
-	
+	//printf("%s\n", result);
+	circular_left_shift(result);
+	printf("%s\n", result);
+	strcpy(key, result);
+	p8_key_permutation(key);
+	printf("%s\n", result);
+	strcpy(key, "1010000010");
+	key_generation(key);
+	printf("%s\n", key1);
+	printf("%s\n", key2);*/
+
 	return 0;
 }
 
-void key_generation()
+void key_generation(char *key)
+{
+	// generating first subkey key1 from key
+	p10_key_permutation(key);
+	strcpy(key, result);
+	circular_left_shift(key);
+	strcpy(temp, key);
+	p8_key_permutation(key);
+	strcpy(key1, result);
+
+	// generating second subkey key2 from temp
+	circular_left_shift(temp);
+	circular_left_shift(temp);
+	p8_key_permutation(temp);
+	strcpy(key2, result);
+}
+
 void circular_left_shift(char *key)
 {
 	char temp = key[0];
