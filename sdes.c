@@ -62,6 +62,17 @@ void circular_left_shift(char *key)
 	key[9] = temp;
 }
 
+void p8_key_permutation(char *key)
+{
+	result[0] = key[5];
+	result[1] = key[2];
+	result[2] = key[6];
+	result[3] = key[3];
+	result[4] =	key[7];
+	result[5] = key[4];
+	result[6] = key[9];
+	result[7] = key[8];
+	result[8] = '\0';
 }
 
 // key permutation
