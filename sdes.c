@@ -47,7 +47,20 @@ int main()
 }
 
 void key_generation()
+void circular_left_shift(char *key)
 {
+	char temp = key[0];
+
+	for (int i = 0; i < 5; i++) {
+		key[i] = key[i+1];
+	}	
+	key[4] = temp;
+	temp = key[5];
+	for (int i = 5 ; i < 10; i++) {
+		key[i] = key[i+1];
+	}	
+	key[9] = temp;
+}
 
 }
 
