@@ -8,7 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 void xor(char *str1, char *str2);
 void ip(char *result);
 void ip_inverse(char *str);
