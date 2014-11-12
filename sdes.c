@@ -8,7 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define SIZE_BLOCK 8 // 8-bit size block
 
 void xor(char *str1, char *str2);
 void ip(char *result);
