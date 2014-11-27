@@ -58,8 +58,16 @@ int main()
 	strcpy(left, "1001");
 	expansion_permutation(left);
 	printf("%s\n", result);
+	strcpy(key, "10100010");
+	xor(result, key);
+	printf("%s\n", result);
 
 	return 0;
+}
+
+void s_boxes(char *result)
+{	
+	
 }
 
 void expansion_permutation(char *str)
