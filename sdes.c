@@ -17,6 +17,8 @@ void circular_left_shift(char *key);
 void p8_key_permutation(char *key);
 void key_generation(char *key);
 void expansion_permutation(char *str);
+void sbox_s0();
+void sbox_s1();
 
 char result[11]; // used for permutations: max is 10 (key) plus terminator character
 char plaintext[9]; // compatible for strcpy
@@ -26,11 +28,12 @@ char key[11]; // 10-bit size key plus terminator
 char key1[9]; // 8-bit subkey1 plus terminator character	
 char key2[9]; // 8-bit subkey2 plus terminator character
 char temp[11]; // temporary variable to generate subkey k2
+char s_0[4][4]; // s0 box
+char s_1[4][4]; // s1 box
 
 int main()
 {
 	int i;
-
 	//do {
 	//	scanf("%s", plaintext);
 	//} while (strlen(plaintext) != SIZE_BLOCK);
@@ -65,9 +68,20 @@ int main()
 	return 0;
 }
 
-void s_boxes(char *result)
-{	
-	
+void sbox_s0()
+{
+	strcpy(s_0[0],"1032");
+	strcpy(s_0[1],"3210");
+	strcpy(s_0[2],"0213");
+	strcpy(s_0[3],"3132");
+}
+
+void sbox_s1()
+{
+	strcpy(s_1[0],"0123");
+	strcpy(s_1[1],"2013");
+	strcpy(s_1[2],"3010");
+	strcpy(s_1[3],"2103");
 }
 
 void expansion_permutation(char *str)
