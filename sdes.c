@@ -16,6 +16,7 @@ void p10_key_permutation(char *key);
 void circular_left_shift(char *key);
 void p8_key_permutation(char *key);
 void key_generation(char *key);
+void expansion_permutation(char *str);
 
 char result[11]; // used for permutations: max is 10 (key) plus terminator character
 char plaintext[9]; // compatible for strcpy
@@ -54,7 +55,24 @@ int main()
 	printf("%s\n", key1);
 	printf("%s\n", key2);*/
 
+	strcpy(left, "1001");
+	expansion_permutation(left);
+	printf("%s\n", result);
+
 	return 0;
+}
+
+void expansion_permutation(char *str)
+{
+	result[0] = str[3];
+	result[1] = str[0];
+	result[2] = str[1];
+	result[3] = str[2];
+	result[4] =	str[1];
+	result[5] = str[2];
+	result[6] = str[3];
+	result[7] = str[0];
+	result[8] = '\0';
 }
 
 void key_generation(char *key)
