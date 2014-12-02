@@ -64,6 +64,7 @@ int main()
 	strcpy(key, "10100010");
 	xor(result, key);
 	printf("%s\n", result);
+	printf("%s\n", s_0[0]);
 
 	return 0;
 }
