@@ -19,6 +19,9 @@ void key_generation(char *key);
 void expansion_permutation(char *str);
 void sbox_s0();
 void sbox_s1();
+int convert_to_decimal(char *str);
+void convert_to_binary(int num);
+void p4(char *str);
 
 char result[11]; // used for permutations: max is 10 (key) plus terminator character
 char plaintext[9]; // compatible for strcpy
@@ -28,12 +31,18 @@ char key[11]; // 10-bit size key plus terminator
 char key1[9]; // 8-bit subkey1 plus terminator character	
 char key2[9]; // 8-bit subkey2 plus terminator character
 char temp[11]; // temporary variable to generate subkey k2
-char s_0[4][4]; // s0 box
+int s_0[4][4]; // s0 box
 char s_1[4][4]; // s1 box
+char tmp[3];
+int row, column;
+char S_str[3];
+char buffer[5];
+char p4_output[5];
 
 int main()
 {
-	int i;
+	int i, tmp2, s0, s1;
+
 	//do {
 	//	scanf("%s", plaintext);
 	//} while (strlen(plaintext) != SIZE_BLOCK);
@@ -58,31 +67,140 @@ int main()
 	printf("%s\n", key1);
 	printf("%s\n", key2);*/
 
-	strcpy(left, "1001");
+	//strcpy(left, "1001");
+	strcpy(left, "1011");
 	expansion_permutation(left);
 	printf("%s\n", result);
 	strcpy(key, "10100010");
 	xor(result, key);
 	printf("%s\n", result);
-	printf("%s\n", s_0[0]);
 
+	//sbox_s0
+	tmp[0] = result[0];
+	tmp[1] = result[3];
+	tmp[2] = '\0';
+	row = convert_to_decimal(tmp);
+	printf("%d\n", row);
+	tmp[0] = result[1];
+	tmp[1] = result[2];
+	tmp[2] = '\0';
+	column = convert_to_decimal(tmp);
+	printf("%d\n", column);
+	sbox_s0();
+	tmp2 = s_0[row][column];
+	printf("%d\n", tmp2);
+	s0 = tmp2;
+	//sbox_s1
+	tmp[0] = result[4];
+	tmp[1] = result[7];
+	tmp[2] = '\0';
+	row = convert_to_decimal(tmp);
+	printf("%d\n", row);
+	tmp[0] = result[5];
+	tmp[1] = result[6];
+	tmp[2] = '\0';
+	column = convert_to_decimal(tmp);
+	printf("%d\n", column);
+	sbox_s1();
+	tmp2 = s_1[row][column];
+	printf("%d\n", tmp2);
+	s1 = tmp2;
+	printf("%d %d\n", s0, s1);
+	convert_to_binary(s0);
+	strcpy(buffer, S_str);
+	convert_to_binary(s1);
+	strcat(buffer, S_str);
+	strcpy(p4_output, buffer);
+	printf("%s\n", p4_output);
+	p4(p4_output);
+	printf("%s\n", p4_output);
+	/*
+	S_str[0] = (char)(((int)'0')+s0);
+	S_str[1] = (char)(((int)'0')+s1);
+	S_str[2] = '\0';
+	printf("%c %c\n", S_str[0], S_str[1]);*/
+	//printf("%c, %c\n", result[1], result[2]);
+	
 	return 0;
 }
 
+
+
+int convert_to_decimal(char *str)
+{
+	if(strlen(str)!=2)
+	return -1;
+
+	if (strcmp(str,"00")==0)
+	return 0;
+
+	if (strcmp(str,"01")==0)
+	return 1;
+
+	if (strcmp(str,"10")==0)
+	return 2;
+
+	if (strcmp(str,"11")==0)
+	return 3;
+
+	return -1;
+}
+
+void convert_to_binary(int num)
+{
+	if(num==0)
+	strcpy(S_str,"00");
+
+	if(num==1)
+	strcpy(S_str,"01");
+
+	if(num==2)
+	strcpy(S_str,"10");
+
+	if(num==3)
+	strcpy(S_str,"11");
+}
+
+
 void sbox_s0()
 {
-	strcpy(s_0[0],"1032");
-	strcpy(s_0[1],"3210");
-	strcpy(s_0[2],"0213");
-	strcpy(s_0[3],"3132");
+	int i, j, k = 0;
+	int item[16] = {1, 0, 3, 2,
+					3, 2, 1, 0,
+					0, 2, 1, 3,
+					3, 1, 3, 2};
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			s_0[i][j] = item[k];
+			k++;
+		}
+	}
 }
 
 void sbox_s1()
 {
-	strcpy(s_1[0],"0123");
-	strcpy(s_1[1],"2013");
-	strcpy(s_1[2],"3010");
-	strcpy(s_1[3],"2103");
+	int i, j, k = 0;
+	int item[16] = {0, 1, 2, 3,
+					2, 0, 1, 3,
+					3, 0, 1, 0,
+					2, 1, 0, 3};
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			s_1[i][j] = item[k];
+			k++;
+		}
+	}
+}
+
+void p4(char *str)
+{
+	p4_output[0] = buffer[1];
+	p4_output[1] = buffer[3];	
+	p4_output[2] = buffer[2];
+	p4_output[3] = buffer[0];
+	p4_output[4] = '\0';
 }
 
 void expansion_permutation(char *str)
