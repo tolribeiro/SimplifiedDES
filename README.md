@@ -30,7 +30,7 @@ Based on the scheme shown above, I implemented the algorithm and came up with th
 
 ```c
 // ------------------------------------------------
-// ---            Encrypt Function   			---
+// ---            Encrypt Function   		---
 // ------------------------------------------------
 
 void encrypt(char *input, char *key)
@@ -44,8 +44,6 @@ void encrypt(char *input, char *key)
 ```
 
 To make it easier to understand, I tried to stick to the names of the variables. The variables *input*, *key* (also the subkeys *k1* and *k2*) and *output* literally mean the same as on the scheme.
-
-You can download the full implementation <a href="http://tolribeiro.github.io/mywebsite/downloads/sdes.c" target="_blank">here<a>.
 
 #Final Considerations
 
