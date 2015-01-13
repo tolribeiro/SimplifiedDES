@@ -3,7 +3,8 @@
 |                                                                              |
 |  * A simplified version of the famous algorithm DES.                         |                                                
 |  * Author: Thiago Ribeiro		                                               |
-|  * January 2014						                                       |
+|  * January 2014															   |
+|								  Version 0.1    							   |
 ==============================================================================*/
 
 #include <stdio.h>
@@ -67,15 +68,18 @@ const int SW[8] =
 
 void initial_permutation(char *input)
 {
-	for (int i = 0; i < 8; i++) output[i] = input[IP[i]];
+	int i;
+
+	for (i = 0; i < 8; i++) output[i] = input[IP[i]];
 	output[8] = '\0';
 }
 
 void initial_permutation_inverse(char *input)
 {
 	char output_final[9];
+	int i;
 
-	for (int i = 0; i < 8; i++) output_final[i] = input[IPI[i]];
+	for (i = 0; i < 8; i++) output_final[i] = input[IPI[i]];
 	output_final[8] = '\0';
 
 	strcpy(output, output_final);
@@ -84,8 +88,9 @@ void initial_permutation_inverse(char *input)
 void switch_halves(char *input)
 {
 	char out_tmp_switched[9];
-	
-	for (int i = 0; i < 8; i++) out_tmp_switched[i] = input[SW[i]];
+	int i;
+
+	for (i = 0; i < 8; i++) out_tmp_switched[i] = input[SW[i]];
 	out_tmp_switched[8] = '\0';	
 	
 	strcpy(output, out_tmp_switched);
@@ -93,15 +98,18 @@ void switch_halves(char *input)
 
 void expansion_permutation(char *input)
 {
-	for (int i = 0; i < 8; i++) output[i] = input[EP[i]];
+	int i;
+
+	for (i = 0; i < 8; i++) output[i] = input[EP[i]];
 	output[8] = '\0';
 }
 
 void p4_permutation(char *input)
 {
 	char F_output[5];
+	int i;
 
-	for (int i = 0; i < 4; i++) F_output[i] = input[P4[i]];
+	for (i = 0; i < 4; i++) F_output[i] = input[P4[i]];
 	F_output[4] = '\0';	
 
 	strcpy(output, F_output);
@@ -189,8 +197,8 @@ void s0_items()
 					0, 2, 1, 3,
 					3, 1, 3, 2};
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
 			s0_box[i][j] = item[k];
 			k++;
 		}
@@ -205,8 +213,8 @@ void s1_items()
 					3, 0, 1, 0,
 					2, 1, 0, 3};
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
 			s1_box[i][j] = item[k];
 			k++;
 		}
@@ -295,20 +303,23 @@ void fk(char *output, char *subkey)
 
 void p10_key_permutation(char *key)
 {
-	for (int i = 0; i < 10; i++) key_tmp[i] = key[P10[i]];
+	int i; 
+
+	for (i = 0; i < 10; i++) key_tmp[i] = key[P10[i]];
 	key_tmp[10] = '\0';
 }
 
 void circular_left_shift(char *key_tmp)
 {
 	char temp = key_tmp[0];
+	int i;
 
-	for (int i = 0; i < 5; i++) {
+	for (i = 0; i < 5; i++) {
 		key_tmp[i] = key_tmp[i+1];
 	}	
 	key_tmp[4] = temp;
 	temp = key_tmp[5];
-	for (int i = 5 ; i < 10; i++) {
+	for (i = 5 ; i < 10; i++) {
 		key_tmp[i] = key_tmp[i+1];
 	}	
 	key_tmp[9] = temp;
@@ -316,12 +327,13 @@ void circular_left_shift(char *key_tmp)
 
 void p8_key_permutation(char *key_tmp, int k)
 {
+	int i;
 	if (k == 1) {
-		for (int i = 0; i < 8; i++) k1[i] = key_tmp[P8[i]];
+		for (i = 0; i < 8; i++) k1[i] = key_tmp[P8[i]];
 		k1[8] = '\0';
 	}
 	else if(k == 2) {
-		for (int i = 0; i < 8; i++) k2[i] = key_tmp[P8[i]];
+		for (i = 0; i < 8; i++) k2[i] = key_tmp[P8[i]];
 		k2[8] = '\0';	
 	} else return;
 }
