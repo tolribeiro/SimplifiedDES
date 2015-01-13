@@ -9,9 +9,8 @@ The simplified DES operates on a 8-bit block of *plaintext* to generate a 8-bit 
 
 The scheme below shows how the plaintext (input) is manipulated to generate the ciphertext (output).
 
-<div style="text-align:center" markdown="1">
-![Message Signal](http://tolribeiro.github.io/mywebsite/downloads/encryption.png "Simplified DES encryption scheme.")
-</div>
+![encryption](http://tolribeiro.github.io/mywebsite/downloads/encryption.png "Simplified DES encryption scheme.")
+
 
 After all these steps, the *output* is the encrypted *input*. 
 
