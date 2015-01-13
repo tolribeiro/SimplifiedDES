@@ -28,7 +28,7 @@ However, you might not have any problems doing it either, because the only thing
 
 Based on the scheme shown above, I implemented the algorithm and came up with the *encrypt* function, that summarizes the encryption process of Simplified DES.  
 
-{% highlight C %}
+```c
 // ------------------------------------------------
 // ---            Encrypt Function   		---
 // ------------------------------------------------
@@ -41,7 +41,7 @@ void encrypt(char *input, char *key)
 	fk(output, k2); // fk with subkey k2
 	initial_permutation_inverse(output); // IP Inverse
 }
-{% endhighlight %}
+```
 
 To make it easier to understand, I tried to stick to the names of the variables. The variables *input*, *key* (also the subkeys *k1* and *k2*) and *output* literally mean the same as on the scheme.
 
