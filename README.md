@@ -30,7 +30,7 @@ Based on the scheme shown above, I implemented the algorithm and came up with th
 
 ```c
 // ------------------------------------------------
-// ---            Encrypt Function   		---
+// ---            Encrypt Function   			---
 // ------------------------------------------------
 
 void encrypt(char *input, char *key)
