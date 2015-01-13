@@ -20,6 +20,10 @@ char binary_tmp[3];
 char s0_box[4][4];
 char s1_box[4][4];
 
+// --------------------------------------------------
+// -- Constants used for Permutation and Switching --
+// --------------------------------------------------
+
 const int IP[8] = 
 {
 	1, 5, 2, 0, 3, 7, 4, 6
@@ -101,6 +105,11 @@ void p4_permutation(char *input)
 	strcpy(output, F_output);
 }
 
+/*
+	This function divides a 8-bit input
+	into l (left) and r (right) with 
+	4 bits each.
+*/
 void divide_block(char *output)
 {	
 	int i, j;
@@ -202,6 +211,11 @@ void s1_items()
 	}
 }
 
+
+/*
+	Calculates the output for given sbox (0 or 1),
+	returning a decimal number.
+*/
 int sbox_s(char *output, int i)
 {
 	char tmp[3];
@@ -239,6 +253,11 @@ int sbox_s(char *output, int i)
 	} else return -1;
 }
 
+/*
+	This mapping is an intermediate process
+	between the input and subkey passed
+	to the fk function
+*/
 void F_mapping(char *output, char *subkey)
 {
 	char binary[3];
@@ -313,8 +332,8 @@ void keys_generation(char *key)
 	p8_key_permutation(key_tmp, 1);
 
 	// generating k2
-	circular_left_shift(key_tmp);
-	circular_left_shift(key_tmp);
+	circular_left_shift(key_tmp); 
+	circular_left_shift(key_tmp); // repeated 
 	p8_key_permutation(key_tmp, 2);
 }
 
@@ -325,7 +344,6 @@ void keys_generation(char *key)
 void encrypt(char *input, char *key)
 {
 	initial_permutation(input);
-	
 	fk(output, k1);
 	switch_halves(output);
 	fk(output, k2);
@@ -334,7 +352,7 @@ void encrypt(char *input, char *key)
 
 // ------------------------------------------------
 // ---              Main Function   			---
-// ------------------------------------------------
+// -------------------------------------------------
 
 int main(int argc, char const *argv[])
 {	
