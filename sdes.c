@@ -1,11 +1,11 @@
-/*==============================================================================
-|           ---    Simplified Data Encryption Standard (SDES)    ---		   |
-|                                                                              |
-|  * A simplified version of the famous algorithm DES.                         |                                                
-|  * Author: Thiago Ribeiro		                                               |
-|  * January 2014															   |
-|								  Version 0.1    							   |
-==============================================================================*/
+/*
+- Simplified Data Encryption Standard (SDES)    		   
+
+- A simplified version of the famous algorithm DES.                                                                         
+- Author: Thiago O. Ribeiro		                                               
+- January 2014															   
+- Version 0.1    							   
+*/
 
 #include <stdio.h>
 #include <string.h>
