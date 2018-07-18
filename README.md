@@ -9,8 +9,7 @@ The simplified DES operates on a 8-bit block of *plaintext* to generate a 8-bit 
 
 The scheme below shows how the plaintext (input) is manipulated to generate the ciphertext (output).
 
-![encryption](http://toribeiro.com/img/encryption.png "Simplified DES encryption scheme.")
-
+<img width="250" alt="sdes diagram" src="https://user-images.githubusercontent.com/6345197/42233085-0ba8eb3c-7eb6-11e8-8e3b-4715a1812e18.png">
 
 After all these steps, the *output* is the encrypted *input*. 
 
