@@ -3,7 +3,7 @@ SDES: A simplified version of DES
 
 A simplified version of the famous encryption algorithm Data Encryption Standard DES.
 
-#The encryption process
+# The encryption process
 
 The simplified DES operates on a 8-bit block of *plaintext* to generate a 8-bit block of *ciphertext*. These types of algorithms are called **block ciphers**. It also uses a 10-bit key, generating two subkeys in the process, used as input for the most delicate part of the algorithm, the *fk function*. <br>
 
@@ -13,17 +13,17 @@ The scheme below shows how the plaintext (input) is manipulated to generate the 
 
 After all these steps, the *output* is the encrypted *input*. 
 
-#The keys generation step
+# The keys generation step
 
 This step only involves single permutations and switching. I strongly believe that if you take a look at the implementation you won't have any problems understanding it.
 
-#The decryption process
+# The decryption process
 
 DES is a **symmetric cipher**, which means that it uses the same key to *encrypt* and *decrypt* the data. Since my idea was only show the step-by-step encryption process, I decided not to write the function to decrypt it. 
 
 However, you might not have any problems doing it either, because the only thing you'll need to do is the encryption process backwards, i.e.: *output -> IP(output) -> fk(output, k2) -> SW(output) -> fk(output, k1) -> IP Inverse (output) -> input*.
 
-#The implementation in C
+# The implementation in C
 
 Based on the scheme shown above, I implemented the algorithm and came up with the *encrypt* function, that summarizes the encryption process of Simplified DES.  
 
